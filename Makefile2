@@ -1,0 +1,95 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kzina <kzina@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/10/02 17:34:05 by kzina             #+#    #+#              #
+#    Updated: 2019/10/11 20:51:48 by kzina            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+NAME	= rtv1
+
+SRC 	= main.c\
+			sdl_connection.c\
+			intersections.c\
+
+OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
+
+CC 		= gcc
+CFLAGS 	= -Wall -Wextra -Werror -g -O3
+
+FT		= ./libft/
+FT_LIB 	= $(addprefix $(FT),libft.a)
+FT_INC 	= ./libft
+FT_LNK	= -L ./libft -l ft
+
+VECDIR	= ./libvec/
+VEC_LIB = $(addprefix $(VECDIR),libvec.a)
+VEC_LNK = -L $(VECDIR) -l vec
+
+HOMDIR	= $(shell pwd | cut -d'/' -f3)
+SRCDIR 	= ./sources/
+INCDIR 	= ./includes/
+OBJDIR	= ./obj/
+FRAMDIR	= ./Frameworks
+
+D_SDL = ./SDL2-2.0.8/
+D_SDLINC = $(D_SDL)include
+D_SDLLIB = $(D_SDL)lib
+L_SDL = `$(D_SDL)sdl2-config --cflags --libs`
+N_SDLARCH = SDL2-2.0.8.tar.gz
+
+HEADER 	= ./includes/rtv.h
+
+INC 	= -I$(INCDIR) -I$(FT_INC) -I$(VECDIR)/includes -I$(D_SDLINC)
+
+FRAME	= $(FRAMDIR)/SDL2.framework $(FRAMDIR)/SDL2_image.framework
+
+FLAGS	= -F ./Frameworks/ -framework SDL2 -framework SDL2_image
+
+all: obj $(D_SDL) $(D_SDLLIB) $(FT_LIB) $(VEC_LIB) $(NAME)
+	
+obj: 
+	mkdir -p $(OBJDIR)
+
+$(D_SDL):
+	tar -xf $(N_SDLARCH)
+
+$(D_SDLLIB):
+	mkdir $(D_SDLLIB)
+	cd $(D_SDL); ./configure --prefix=`pwd`/lib
+	make -C $(D_SDL)
+	make -C $(D_SDL) install >/dev/null
+
+$(OBJDIR)%.o:$(SRCDIR)%.c $(HEADER)
+	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+
+$(VEC_LIB):
+	make -C $(VECDIR)
+
+$(FT_LIB):
+	make -C $(FT)
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) $(L_SDL) $(FT_LNK) $(VEC_LNK) -o $(NAME)
+
+clean:
+	rm -rf $(OBJDIR)
+	make -C $(FT) clean
+	make -C $(VECDIR) clean
+
+fclean: clean
+	rm -rf $(NAME)
+	rm -rf $(D_SDL)
+	make -C $(FT) fclean
+	make -C $(VECDIR) fclean
+
+re: 
+	$(MAKE) fclean
+	$(MAKE) all
+
+.PHONY: clean fclean all
