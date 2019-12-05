@@ -6,7 +6,7 @@
 /*   By: kzina <kzina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:33:04 by kzina             #+#    #+#             */
-/*   Updated: 2019/11/21 17:02:21 by kzina            ###   ########.fr       */
+/*   Updated: 2019/12/05 17:24:15 by kzina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ typedef struct		s_cam
 {
 	t_vec			pos;
 	t_vec			dir;
-	//t_vec			updir;
 	t_vec			rot;
-	//t_vec			ldir;
 }					t_cam;
 
 typedef struct		s_ray

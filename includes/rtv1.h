@@ -6,7 +6,7 @@
 /*   By: kzina <kzina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:32:54 by kzina             #+#    #+#             */
-/*   Updated: 2019/12/03 18:57:28 by kzina            ###   ########.fr       */
+/*   Updated: 2019/12/05 18:32:47 by kzina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 
 # include "rtv1types.h"
 
-# define WNDW		2160
-//# define WNDW_H		560
-# define WNDH		1440
-//# define WNDH_H		360
-//# define FOV		58.0
-//# define FOV_H		10
+# define WNDW		1280
+# define WNDH		760
 # define PPD		500
 
 # define ABS(x)		(x) > 0 ? (x) : -(x)

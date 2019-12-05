@@ -6,7 +6,7 @@
 /*   By: kzina <kzina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:36:01 by kzina             #+#    #+#             */
-/*   Updated: 2019/12/03 18:56:40 by kzina            ###   ########.fr       */
+/*   Updated: 2019/12/05 18:29:58 by kzina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ void		*render_part(void *data)
 		j = -1;
 		while (++j < WNDW)
 		{
-			/*r.dir = vec_sub(ppc, vec_scale(td->env.cam.ldir, (j - WNDW_H)));
-			r.dir = vec_add(r.dir, vec_scale(td->env.cam.updir, (i - WNDH_H)));
-			r.dir = vec_norm(vec_sub(r.dir, r.start));*/
 			r.dir = vec_norm(vec_sub(vec_new((j - WNDW / 2),
 				-(i - WNDH / 2), ppc.z), r.start));
 			trace_ray(&r, td->env);
@@ -105,7 +102,8 @@ int			main(int ac, char **av)
 	if (ac != 2)
 		typeof_error(USAGE);
 	parse_input(&env, av[1]);
-	printf("x: %f, y: %f, z: %f\n", env.cam.pos.x, env.cam.pos.y, env.cam.pos.z);
+	printf("x: %f, y: %f, z: %f\n", env.cam.pos.x,
+		env.cam.pos.y, env.cam.pos.z);
 	ft_putendl("Loading...");
 	env.pixels = malloc(sizeof(int) * WNDW * WNDH);
 	render(env, &env.pixels);

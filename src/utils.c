@@ -6,7 +6,7 @@
 /*   By: kzina <kzina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:37:13 by kzina             #+#    #+#             */
-/*   Updated: 2019/11/21 16:29:15 by kzina            ###   ########.fr       */
+/*   Updated: 2019/12/05 18:29:19 by kzina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ void	default_env(t_env *env)
 	env->cam.pos = vec_new(0, 0, 0);
 	env->cam.rot = vec_new(0, 0, 0);
 	env->cam.dir = vec_new(0, 0, -1);
-	//env->cam.updir = vec_new(0, -1, 0);
-	//env->cam.ldir = vec_norm(vec_cross(env->cam.dir, env->cam.updir));
-	//env->cam.ldir = vec_new(-1, 0, 0);
 	env->total_light = 0.2;
 }
 

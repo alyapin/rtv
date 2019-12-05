@@ -6,7 +6,7 @@
 /*   By: kzina <kzina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:36:49 by kzina             #+#    #+#             */
-/*   Updated: 2019/11/21 17:02:28 by kzina            ###   ########.fr       */
+/*   Updated: 2019/12/05 17:15:44 by kzina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ void	parse_cam(t_cam *cam, char **sl)
 	typeof_error(nberr);
 	cam->dir = vec_new(0, 0, -1);
 	cam->dir = vec_rot_xyz(cam->dir, cam->rot);
-	//cam->updir = vec_new(0, -1, 0);
-	//cam->updir = vec_rot_xyz(cam->updir, cam->rot);
-	//cam->ldir = vec_norm(vec_cross(cam->dir, cam->updir));
 }
 
 int		get_vec_data(t_vec *res, char *str)
